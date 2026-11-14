@@ -1,0 +1,18 @@
+services:
+  - type: worker
+    name: zyro-whatsapp-bot
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PHONE_NUMBER
+        sync: false
+      - key: AUTH_DIR
+        value: /var/data/auth_info
+      - key: PREFIX
+        value: "!"
+    disk:
+      name: zyro-whatsapp-auth
+      mountPath: /var/data
+      sizeGB: 1
